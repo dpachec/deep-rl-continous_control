@@ -1,11 +1,10 @@
 # Project Details
 
-We will work with the Reacher environment V02 of Unity ML-Agents, to train a (virtual) robotic arm to follow a moving target. Our agent will store observations of the environment in a continuous vector of 33 values corresponding to position, rotation, velocity, and angular velocities of the arm. It will have four possible actions available at each time step (4 continous variable with values between -1 and 1).
+We will work with the Reacher environment V02 of Unity ML-Agents, to train 20 (virtual) robotic arm to follow a moving target in parallel. Our agents will store observations of the environment in a continuous vector of 33 values corresponding to position, rotation, velocity, and angular velocities of the arms. Each agent will have four possible actions available at each time step (4 continous variable with values between -1 and 1).
 
-The robot will receive a reward of +.1 for each step its hand is in the goal location. Thus its goal is to maintain the position of the arm position at the target location for as long as possible. 
+Robots will receive a reward of +.1 for each step its hand is in the goal location. Thus the goal is to maintain the arm at the target location for as long as possible. 
 
-20 instances of the robot will work in parallell in the same environment.  
-The environment is considered solved when an average score of +30 is achieved across all agents and 100 episodes.  
+The environment is solved when an average score of +30 is achieved across all agents and 100 episodes.  
 
 
 # Getting Started
