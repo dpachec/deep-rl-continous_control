@@ -36,44 +36,55 @@ We use two networks for each of the two to control the update of the weights. On
 
 ### Main functions
 
-**step(self, state, action, reward, next_state, done):**
-This function saves the experiences of 20 agents in the replay memory buffer
+**step(self, state, action, reward, next_state, done):** Saves the experiences of 20 agents in the replay memory buffer
+
 **act (self, state, eps):**
-This function selects an action for a given state following the policy encoded by the NN function approximator. The architecture of this network is defined in the model.py file (see below).
-First, a transformation of the current state from numpy to torch is performed. Then, a forward pass on the actor_local is performed. Data is moved to a cpu and to numpy.
-Noise is added, and clipping between -1 and 1 is applied.
+Selects an action for a given state following the policy encoded by the NN function approximator. The architecture of this network is defined in the model.py file. Main steps:
+1) Transformation of the current state from numpy to torch is performed. 
+2) Forward pass on the actor_local. 
+3) Data is moved to a cpu and to numpy
+4) Noise is added
+5) Clipping between -1 and 1 .
+
 **learn2(self, experiences, gamma):**
-This function will sample a bunch of experiences across all agents and learn from them by calling the learn function (see below).
+Sample a bunch of experiences across all agents and learn from them by calling the learn function.
+
 **learn(self, experiences, gamma):**
-• This function will update the Actor and Critic network’s weights given a batch of experience tuples.
-• In the update critic section of the function, it will first get the max predicted Q values (for next states) from the critic_target and actor_target models, and compute Q targets for current states. Then, it will get the expected Q values from the critic_local model, compute the loss and minimize the loss using gradient descent. Note that we use gradient clipping.
-• In the update actor section, we compute the loss of he acor, and get the
-predicted actions.
-• The function soft_update is called in the end to update the target networks.
+Updates the Actor and Critic network’s weights given a batch of experience tuples.
+1) In the update critic section of the function, it first gets the max predicted Q values (for next states) from the critic_target and actor_target models, and compute Q targets for current states. Then, it gets the expected Q values from the critic_local model, compute the loss and minimize the loss using gradient descent. Note that we use gradient clipping.
+
+2) In the update actor section, we compute the loss of he acor, and get the predicted actions.
+3) The function soft_update is called in the end to update the target networks.
 
 **soft update (local_model, target_model, tau):**
-This function grabs all of the target_model and the local_model parameters (in the zip command), and copies a mixture of both (defined by Tau) into the target_param.
+Grabs all of the target_model and the local_model parameters (in the zip command), and copies a mixture of both (defined by Tau) into the target_param.
 The target network receives updates that are a combination of the local (most up to date network) and the target (itself). In general, it will be a very large chunk of itself, and a very small chunk of the other network.
 
 ### Replay Buffer
-The replay buffer implemented as a class retains the end most recent experience tuples. If not enough experience is available to the agent (i.e., if self.memory < BATCH_SIZE), no learning takes place.
-Note that we do not clear out the memory after each episode, which enables to recall and build batches of experience from across episodes.
-The buffer is implemented with a Python deque. Given that maxlen is specified to BATCH_SIZE, our buffer is bounded. Once full, when new items are added, a corresponding number of items are discarded from the opposite end.
+The replay buffer class retains the end most recent experience tuples. If not enough experience is available to the agent (i.e., if self.memory < BATCH_SIZE), no learning takes place.
+Buffer is implemented with a deque. Note that we do not clear out the memory after each episode, which enables to recall and build batches of experience from across episodes.
+Given that maxlen is specified to BATCH_SIZE, our buffer is bounded. Once full, when new items are added, a corresponding number of items are discarded from the opposite end.
 
 ### OUNoise
-This class is implemented to create some random noise
+Implementation of stochastic noise.
 
 
 ### Neural Network Architecture
 Two classes are instantiated in the model.py file for Actor and Critic networks.
-The actor network
-The Actor network is estimating the policy. It was built using the PyTorch nn package. The network is defined by subclassing the torch.nn.Module class. The architecture includes an input layer (of size = state size), two fully connected hidden layers of 400 and 300 units and an output layer (size = action size).
-RELU activation (Regularized linear units) is applied in the forward function for the first two layers. However, note that on the output side, given the continuous space we use the tahn activation function.
 
-The critic network
-The Critic network is approximating the Q function. It is defined by subclassing the torch.nn.Module class. The architecture includes an input layer (of size = state size), one fully connected hidden layer of 400 units, a second hidden layer of 300 + action size units and an output layer (size = action size).
+**The actor network**
+Neural Network that estimates the optimal policy. 
+Built in PyTorch (nn package). 
+Architecture includes an input layer (of size = state size), two fully connected hidden layers of 400 and 300 units and an output layer (size = action size).
+RELU activation (Regularized linear units) is applied in the forward function for the first two layers. Note that on the output side, given the continuous space we use the Tahn activation function.
+
+**The critic network**
+Approximates the value function. It is defined by subclassing the torch.nn.Module class. 
+The architecture includes an input layer (of size = state size), one fully connected hidden layer of 400 units, a second hidden layer of 300 + action size units and an output layer (size = action size).
 RELU activation (Regularized linear units) is applied in the forward function. Note that in the forward pass, the action is being concatenated to get the value of the specific state-action pair.
-Chosen hyperparameters
+
+
+## Chosen hyperparameters
 
 BUFFER_SIZE = int(5e5)   #replay buffer size
 BATCH_SIZE = 512 #minibatch size
