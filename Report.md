@@ -87,8 +87,8 @@ RELU activation is applied in the forward function. Note that in the forward pas
 ## Chosen hyperparameters
 
 - BUFFER_SIZE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=  int(5e5)   #replay buffer size
-- BATCH_SIZE       =  512 #minibatch size
-- GAMMA               =  0.99 #discount factor
+- BATCH_SIZE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=  512 #minibatch size
+- GAMMA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=  0.99 #discount factor
 - TAU                      =  1e-3 #for soft update of target parameters
 - LR_ACTOR          =  1e-3 #learning rate of the actor
 - LR_CRITIC           =  3e-3 #learning rate of the critic 
