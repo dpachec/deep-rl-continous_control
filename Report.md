@@ -11,7 +11,7 @@ For each episode during training:
 • Each agent collects an observation from the environment and takes an action using the policy, observes the reward and the next state.
 
 • Stores the experience tuple SARS' in replay memory.
-
+ 
 • Select a small bunch of tuples from memory randomly and learn from it ddpq_agent.py
 
 ## Deep deterministic Policy Gradient Agent
@@ -106,7 +106,8 @@ Figure 1. Figure shows that average reward over 100 episodes and over all 20 age
 
 
 ## Ideas for future work
-- Try other neural network architectures such as PPO or AC2. 
+- Try different neural network architectures for both Actor and Critic networks. In particular, adding layers to improve the policy and value function estimation.
+- Try other algorithms such as PPO or AC2. 
 - Train the agent using raw pixels.
 
 
