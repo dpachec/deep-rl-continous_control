@@ -1,6 +1,4 @@
-# Report
-
-## Introduction
+# Introduction
 Description of a Deep Deterministic Policy Gradient (DPDG) algorithm developed to solve Unity ML-agents Reacher V02 environment.
 
 Use the Continuous_Control.ipynb to train the agent. 
@@ -14,7 +12,7 @@ For each episode during training:
  
 • Select a small bunch of tuples from memory randomly and learn from it ddpq_agent.py
 
-## Deep deterministic Policy Gradient Agent
+# Deep deterministic Policy Gradient Agent
 ddpg_agent.py has 3 main classes: 
 
 - **Agent**, with parameters state_size, action_size, and a seed for random number generation in PyTorch.
@@ -22,7 +20,7 @@ ddpg_agent.py has 3 main classes:
 - **OUNoise** with inputs size, seed, mu, theta, sigma.
 
 
-### Agent
+## Agent
 Four neural networks are initialized with the Agent. Basically, two networks with two instances: an Actor and a Critic network, with two versions (target and local). The critic network estimates the value function of policy pi, V(pi) using the TD estimate. The output of the critic is used to train the actor network, which takes in a state, and outputs a distribution over possible actions.
 
 The algorithm goes like this:
@@ -60,16 +58,16 @@ Updates the Actor and Critic network’s weights given a batch of experience tup
 Grabs all of the target_model and the local_model parameters (in the zip command), and copies a mixture of both (defined by Tau) into the target_param.
 The target network receives updates that are a combination of the local (most up to date network) and the target (itself). In general, it will be a very large chunk of itself and a very small chunk of the other network.
 
-### Replay Buffer
+## Replay Buffer
 The replay buffer class retains the end most recent experience tuples. If not enough experience is available to the agent (i.e., if self.memory < BATCH_SIZE), no learning takes place.
 Buffer is implemented with a python deque. Note that we do not clear out the memory after each episode, which enables to recall and build batches of experience from across episodes.
 Given that maxlen is specified to BATCH_SIZE, the buffer is bounded. Once full, when new items are added, a corresponding number of items are discarded from the opposite end.
 
-### OUNoise
+## OUNoise
 Implementation of stochastic noise.
 
 
-### Neural Network Architecture
+# Neural Network Architecture
 Two classes are instantiated in the model.py file for Actor and Critic networks.
 
 **The actor network:**
@@ -84,7 +82,7 @@ The architecture includes an input layer (of size = state size), one fully conne
 RELU activation is applied in the forward function. Note that in the forward pass, the action is being concatenated to get the value of the specific state-action pair.
 
 
-## Chosen hyperparameters
+# Chosen hyperparameters
 
 - BUFFER_SIZE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=  int(5e5)  &nbsp;&nbsp;&nbsp;#replay buffer size
 - BATCH_SIZE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=  512 &nbsp;&nbsp;&nbsp;#minibatch size
@@ -96,7 +94,7 @@ RELU activation is applied in the forward function. Note that in the forward pas
 
 
 
-## Training protocol
+# Training protocol
 The agent was trained until an average score of +30 for all 20 agents over 100 consecutive episodes was reached. 
 
 
@@ -106,7 +104,7 @@ Figure shows average reward for each episode over all 20 agents. Red dotted line
 
 
 
-## Ideas for future work
+# Ideas for future work
 - Try different neural network architectures for both Actor and Critic networks. In particular, add hidden layers to improve the policy and value function estimation.
 - Try other algorithms such as PPO or AC2. 
 - Train the agent using raw pixels.
