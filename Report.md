@@ -27,7 +27,7 @@ Four neural networks are initialized with the Agent. Basically, two networks wit
 
 The algorithm goes like this:
 - Input the current state into the actor and get the action to take in that state. Observe next state and reward, to get an experience tuple s a r s'
-- Then, using the TD estimate, which is the reward R plus the critic's estimate for s', so r+yV(s';Thetav), the critic network is trained.
+- Then, using the TD estimate, which is the reward R plus the critic's estimate for s', the critic network is trained.
 - Next, to calculate the advantage r+yV(s') - V(s), we also use the critic network.
 - Finally, the actor is trained using the calculated advantage as a baseline.
 
@@ -44,7 +44,7 @@ Selects an action for a given state following the policy encoded by the NN funct
 2) Forward pass on the actor_local. 
 3) Data is moved to a cpu and to numpy
 4) Noise is added
-5) Clipping between -1 and 1 .
+5) Clipping between -1 and 1.
 
 **learn2(self, experiences, gamma):**
 Sample a bunch of experiences across all agents and learn from them by calling the learn function.
@@ -53,12 +53,12 @@ Sample a bunch of experiences across all agents and learn from them by calling t
 Updates the Actor and Critic network’s weights given a batch of experience tuples.
 1) In the update critic section of the function, it first gets the max predicted Q values (for next states) from the critic_target and actor_target models, and compute Q targets for current states. Then, it gets the expected Q values from the critic_local model, compute the loss and minimize the loss using gradient descent. Note that we use gradient clipping.
 
-2) In the update actor section, we compute the loss of he acor, and get the predicted actions.
+2) In the update actor section, we compute the loss of the Actor, and get the predicted actions.
 3) The function soft_update is called in the end to update the target networks.
 
 **soft update (local_model, target_model, tau):**
 Grabs all of the target_model and the local_model parameters (in the zip command), and copies a mixture of both (defined by Tau) into the target_param.
-The target network receives updates that are a combination of the local (most up to date network) and the target (itself). In general, it will be a very large chunk of itself, and a very small chunk of the other network.
+The target network receives updates that are a combination of the local (most up to date network) and the target (itself). In general, it will be a very large chunk of itself and a very small chunk of the other network.
 
 ### Replay Buffer
 The replay buffer class retains the end most recent experience tuples. If not enough experience is available to the agent (i.e., if self.memory < BATCH_SIZE), no learning takes place.
@@ -75,7 +75,7 @@ Two classes are instantiated in the model.py file for Actor and Critic networks.
 **The actor network:**
 Neural Network that estimates the optimal policy. 
 Built in PyTorch (nn package). 
-Architecture includes an input layer (of size = state size), two fully connected hidden layers of 400 and 300 units and an output layer (size = action size).
+The architecture includes an input layer (of size = state size), two fully connected hidden layers of 400 and 300 units and an output layer (size = action size).
 RELU (Regularized linear units) activation is applied in the forward function for the first two layers. Note that on the output side, given the continuous space we use the Tahn activation function.
 
 **The critic network:**
@@ -97,12 +97,13 @@ RELU activation is applied in the forward function. Note that in the forward pas
 
 
 ## Training protocol
-The agent was trained until an average score of +30 for all 20 agents, over 100 consecutive episodes was reached. This was achieved after 442 episodes:
+The agent was trained until an average score of +30 for all 20 agents over 100 consecutive episodes was reached. 
 
 
 ![alt text](/output2.png?raw=true "Title")
 
-Figure 1. Figure shows that average reward over 100 episodes and over all 20 agents. Red dotted line indicates average of +30.
+Figure shows average reward for each episode over all 20 agents. Red dotted line indicates average of +30. The goal of one hundred consecutive episodes with scores above 30 was achieved at episode 442.
+
 
 
 ## Ideas for future work
