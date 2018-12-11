@@ -17,22 +17,24 @@ For each episode during training:
 ## Deep deterministic Policy Gradient Agent
 ddpg_agent.py has 3 main classes: 
 
-- **Agent**: Agent class with parameters state_size, action_size, and a seed for random number generation in PyTorch.
-- **ReplayBuffer** Memory buffer class initialized with parameters action_size, BUFFER_SIZE, BATCH_SIZE, and seed.
-- **OUNoise** Class with inputs size, seed, mu, theta, sigma.
+- **Agent**, with parameters state_size, action_size, and a seed for random number generation in PyTorch.
+- **ReplayBuffer**, initialized with parameters action_size, BUFFER_SIZE, BATCH_SIZE, and seed.
+- **OUNoise** with inputs size, seed, mu, theta, sigma.
 
 
 ### Agent
 Four neural networks are initialized with the Agent. Basically, two networks with two instances: an Actor and a Critic network, with two versions (target and local). The critic network estimates the value function of policy pi, V(pi) using the TD estimate. The output of the critic is used to train the actor network, which takes in a state, and outputs a distribution over possible actions.
 
 The algorithm goes like this:
-- Input the current state into the actor and get the action to take in that state. Observe next state and reward, to get your experience tuple s a r s'
+- Input the current state into the actor and get the action to take in that state. Observe next state and reward, to get an experience tuple s a r s'
 - Then, using the TD estimate, which is the reward R plus the critic's estimate for s', so r+yV(s';Thetav), the critic network is trained.
 - Next, to calculate the advantage r+yV(s') - V(s), we also use the critic network.
 - Finally, the actor is trained using the calculated advantage as a baseline.
 
 This type of architecture is well suited for continuous action spaces, with the critic network learning the optimal action for every given state, and then passing that optimal action to the actor network which uses it to estimate the policy.
-We use two networks for each of the two to control the update of the weights (if we were updating at every time step, our policy estimate would diverge). Only when the function **learn2()** is called after each episode the weights are transferred between the target and local versions.
+We use two networks for each of the two to control the update of the weights. Only when the function **learn2()** is called after each episode the weights are transferred between the target and local versions.
+
+### Main functions
 
 **step(self, state, action, reward, next_state, done):**
 This function saves the experiences of 20 agents in the replay memory buffer
