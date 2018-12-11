@@ -106,7 +106,7 @@ Figure 1. Figure shows that average reward over 100 episodes and over all 20 age
 
 
 ## Ideas for future work
-- Try different neural network architectures for both Actor and Critic networks. In particular, adding layers to improve the policy and value function estimation.
+- Try different neural network architectures for both Actor and Critic networks. In particular, add hidden layers to improve the policy and value function estimation.
 - Try other algorithms such as PPO or AC2. 
 - Train the agent using raw pixels.
 
