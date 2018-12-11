@@ -89,7 +89,7 @@ RELU activation is applied in the forward function. Note that in the forward pas
 - BUFFER_SIZE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=  int(5e5)  &nbsp;&nbsp;&nbsp;#replay buffer size
 - BATCH_SIZE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=  512 &nbsp;&nbsp;&nbsp;#minibatch size
 - GAMMA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=  0.99 &nbsp;&nbsp;&nbsp;#discount factor
-- TAU   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=  1e-3 &nbsp;&nbsp;&nbsp;#for soft update of target parameters
+- TAU   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=  1e-3 &nbsp;&nbsp;&nbsp;#for soft update of target parameters
 - LR_ACTOR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=  1e-3 &nbsp;&nbsp;&nbsp;#learning rate of the actor
 - LR_CRITIC &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=  3e-3 &nbsp;&nbsp;&nbsp;#learning rate of the critic 
 - WEIGHT_DECAY &nbsp;=  0 &nbsp;&nbsp;&nbsp;#L2 weight decay
