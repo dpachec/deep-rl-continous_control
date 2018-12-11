@@ -31,9 +31,9 @@ pip install unityagents
 
 # Instructions
 
-To train the agent use the continous_control.ipynb file. The firs cell will train the agent using the Deep Deterministic Policy Gradient algorithm. The weights of the nn implementation (policy) will be saved. 
+The first cell of the Continous_Control.ipynb file will train 20 agents. The weights of the Actor and Critic neural network implementations will be saved into "checkpoint_actor.pth" and "checkpoint_critic.pth".
 
-To observe the behavior of the trained agent, cell N2, which will load the weights from the files "checkpoint_actor.pth" and "checkpoint_critic.pth". 
+To observe the behavior of the trained agent, load the weights from the files and run the simulation in the second cell.
 
 
 
