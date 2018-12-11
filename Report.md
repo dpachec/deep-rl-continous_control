@@ -100,7 +100,7 @@ WEIGHT_DECAY =0 #L2 weight decay
 The agent was trained until an average score of +30 for all 20 agents, over 100 consecutive episodes was reached. This was achieved after 442 episodes:
 
 
-![alt text](https://github.com/dpachec/deep-rl-continous_control/output2.png)
+![alt text](deep-rl-continous_control/output2.png)
 
 Figure 1. Figure shows that average reward over 100 episodes and over all 20 agents. Dotted line indicates an average of +30.
 
