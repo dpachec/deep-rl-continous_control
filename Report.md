@@ -86,13 +86,13 @@ RELU activation is applied in the forward function. Note that in the forward pas
 
 ## Chosen hyperparameters
 
-BUFFER_SIZE = int(5e5)   #replay buffer size
-BATCH_SIZE = 512 #minibatch size
-GAMMA = 0.99 #discount factor
-TAU = 1e-3 #for soft update of target parameters
-LR_ACTOR= 1e-3 #learning rate of the actor
-LR_CRITIC= 3e-3 #learning rate of the critic 
-WEIGHT_DECAY =0 #L2 weight decay
+- BUFFER_SIZE     =  int(5e5)   #replay buffer size
+- BATCH_SIZE       =  512 #minibatch size
+- GAMMA               =  0.99 #discount factor
+- TAU                      =  1e-3 #for soft update of target parameters
+- LR_ACTOR          =  1e-3 #learning rate of the actor
+- LR_CRITIC           =  3e-3 #learning rate of the critic 
+- WEIGHT_DECAY  =  0 #L2 weight decay
 
 
 
@@ -102,7 +102,7 @@ The agent was trained until an average score of +30 for all 20 agents, over 100 
 
 ![alt text](/output2.png?raw=true "Title")
 
-Figure 1. Figure shows that average reward over 100 episodes and over all 20 agents. Dotted line indicates an average of +30.
+Figure 1. Figure shows that average reward over 100 episodes and over all 20 agents. Red dotted line indicates average of +30.
 
 
 ## Ideas for future work
